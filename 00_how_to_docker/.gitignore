@@ -1,0 +1,11 @@
+*.o
+*.a
+a.out
+main.c
+*.swp
+*.swo
+*.ghc
+*.dSYM/
+*.filler
+*.trace
+out
