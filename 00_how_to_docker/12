@@ -1,7 +1,7 @@
 docker pull mysql
 docker run --name spawning-pool \
 --restart unless-stopped \
---mount source=hatchery,target=/hatchery \
+--mount source=hatchery,target=/var/lib/mysql \
 -e MYSQL_ROOT_PASSWORD=Kerrigan \
 -e MYSQL_DATABASE=zerglings \
 -d mysql
