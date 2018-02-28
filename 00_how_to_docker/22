@@ -1,0 +1,2 @@
+eval $(docker-machine env Char) && export JOINTOKEN=$(docker swarm join-token --quiet worker)
+eval $(docker-machine env Aiur) && docker swarm join --token $JOINTOKEN $(docker-machine ip Char):2377
