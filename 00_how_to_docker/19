@@ -1,8 +1,4 @@
-docker run -dit --name Abathur --mount type=bind,source=/Users/mfonteni/dockerex19,target=/root -p 3000:3000 python:2-slim
-docker exec Abathur apt-get update && apt-get -y --force-yes install python python-pip
-docker exec Abathur pip install flask --cache-dir /tmp/
-echo "from flask import Flask app = Flask(__name__)'" > /Users/mfonteni/dockerex19/helloworld.py
-echo "@app.route('/') def hello_world():'" >> /Users/mfonteni/dockerex19/helloworld.py
-echo "return 'Hello, World!'" >> /Users/mfonteni/dockerex19/helloworld.py
-docker exec Abathur export FLASK_APP=/root/helloworld.py
-docker exec flask run --host=0.0.0.0 --port=3000
+docker run -dit --name Abathur --mount type=bind,source=/Users/mfonteni/dockerex19,target=/root -e FLASK_APP=/root/helloworld.py -p 3000:3000 python:2-slim
+docker exec Abathur pip install flask --cache-dir /tmp
+echo $"from flask import Flask\napp = Flask(__name__)\n@app.route('/')\ndef hello_world():\n\treturn '<h1>Hello World</h1>'" > /Users/mfonteni/dockerex19/helloworld.py
+docker exec Abathur flask run --host=0.0.0.0 --port=3000
