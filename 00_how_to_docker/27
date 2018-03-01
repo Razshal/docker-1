@@ -1,0 +1,1 @@
+docker service logs -f --raw $(docker service ps engineering-bay | grep engineering-bay.1 | awk '{print $1}')
