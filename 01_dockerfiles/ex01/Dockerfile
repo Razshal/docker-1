@@ -4,7 +4,8 @@ RUN mkdir ~/tsinstall
 WORKDIR ~/tsinstall
 RUN curl "http://dl.4players.de/ts/releases/3.1.1/teamspeak3-server_linux_amd64-3.1.1.tar.bz2" > tsinstall.tar.bz2 \
 && tar xf tsinstall.tar.bz2
-WORKDIR ~/tsintall/teamspeak3-server_linux_amd64/
-RUN export TS3SERVER_LICENSE=accept
-EXPOSE 9987:9987
-ENTRYPOINT ["/bin/bash", "-c", "ts3server_minimal_runscript.sh"
+WORKDIR teamspeak3-server_linux_amd64/
+RUN touch .ts3server_license_accepted
+EXPOSE 9987:9987/udp
+EXPOSE 30033:30033/tcp
+RUN sh ts3server_minimal_runscript.sh
