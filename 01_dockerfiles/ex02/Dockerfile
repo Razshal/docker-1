@@ -1,11 +1,12 @@
-FROM ruby
+FROM debian
 
 RUN apt-get update && apt-get install -y --no-install-recommends nodejs postgresql \
-sqlite3 build-essential postgresql-contrib postgresql-server-dev-all mysql-server
+sqlite3 build-essential postgresql-contrib postgresql-server-dev-all mysql-server ruby-full
 
 RUN mkdir /opt/app
 WORKDIR /opt/app
-RUN gem install bundler rails rails-server activerecord-postgresql-adapter postgresql sqlite3
+
+RUN gem install bundler rails-server activerecord-postgresql-adapter postgresql
 
 ONBUILD COPY . /opt/app/
 ONBUILD RUN if [ -f config/database.yml.example ]; then mv config/database.yml.example config/database.yml; fi
