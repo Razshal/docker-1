@@ -1,4 +1,3 @@
-docker pull mysql
 docker run --name spawning-pool \
 --restart unless-stopped \
 --mount source=hatchery,target=/var/lib/mysql \
